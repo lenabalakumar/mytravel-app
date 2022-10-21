@@ -1,7 +1,9 @@
 import {
   Button,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
+  Platform,
   TextInput,
   useWindowDimensions,
   View,
@@ -27,12 +29,16 @@ const LoginScreen = () => {
             },
           ])}
         >
-          <TextInput
-            value={values.name}
-            onChangeText={handleChange("name")}
-            onBlur={handleBlur("name")}
-          />
-          <Button onPress={handleSubmit} title="submit" />
+          <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={100}>
+            <TextInput
+              value={values.name}
+              onChangeText={handleChange("name")}
+              onBlur={handleBlur("name")}
+              placeholder="Enter your name"
+              style={[styles.textInput, { width: width - 20, height: 50 }]}
+            />
+            <Button onPress={handleSubmit} title="submit" />
+          </KeyboardAvoidingView>
         </View>
       )}
     </Formik>
@@ -47,5 +53,12 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  textInput: {
+    backgroundColor: "white",
+    borderRadius: 5,
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    letterSpacing: 2,
   },
 });
